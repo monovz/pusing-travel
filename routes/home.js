@@ -1,0 +1,12 @@
+const HomeController = require('../controllers/HomeController');
+const routes = require('express').Router();
+
+routes.get('/', HomeController.showHome);
+
+routes.get('/register', HomeController.register)
+
+routes.get('/login', HomeController.login);
+
+routes.get('/logout', HomeController.logout);
+
+module.exports = routes;
