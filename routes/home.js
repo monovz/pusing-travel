@@ -7,6 +7,19 @@ routes.get('/register', HomeController.register)
 routes.post('/register', HomeController.registerPost)
 
 routes.get('/login', HomeController.login);
+routes.post('/login', HomeController.loginPost);
+
+function checkSession(req,res,next){
+    if(req.session.userId){
+        next()
+    } else {
+        res.send('Unauthorized!')
+    }
+}
+
+routes.use(checkSession)
+routes.get('/dashboard',HomeController.dashboard)
+
 
 routes.get('/logout', HomeController.logout);
 

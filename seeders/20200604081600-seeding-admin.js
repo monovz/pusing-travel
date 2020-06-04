@@ -17,6 +17,7 @@ module.exports = {
    const admin = [{
     username: 'admin',
     password: 'admin',
+    role: 'admin',
     createdAt: new Date(),
     updatedAt: new Date()
   }]

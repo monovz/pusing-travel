@@ -28,7 +28,7 @@ module.exports = (sequelize, DataTypes) => {
   User.addHook('beforeCreate',(user,options) => {
     const salt = bcrypt.genSaltSync(10);
     const hash = bcrypt.hashSync(user.password, salt);
-    user,password = hash
+    user.password = hash
   })
   User.associate = function(models) {
     User.belongsToMany(models.Trip, {through: "UserTransactions"})
