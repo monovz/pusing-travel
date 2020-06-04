@@ -44,7 +44,9 @@ class TripController{
     }
 
     static bookTripPost(req, res){
-        
+        let newUserTransaction = {
+            start_date: req.body.start_date
+        }
     }
 }
 
