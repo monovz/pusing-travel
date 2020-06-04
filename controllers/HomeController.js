@@ -14,7 +14,6 @@ class HomeController{
         let newUser = {
                 username: req.body.username,
                 password: req.body.password,
-                role: 'user'
             }
         User.create(newUser)
         .then(data =>{
@@ -38,7 +37,7 @@ class HomeController{
             else{
                 if(bcrypt.compareSync(req.body.password, data.password)){
                     req.session.userId = req.body.username
-                    res.redirect(`/dashboard`)
+                    res.redirect(`/${req.body.username}/dashboard`)
                 } else{
                     res.send(`username dan password tidak cocok`)
                 }
@@ -46,12 +45,13 @@ class HomeController{
         })
     }
 
-    static dashboard(req, res){
-        res.render('dashboard')
-    }
-
     static logout(req, res){
-
+        req.session.destroy((err)=>{
+            if(err) res.render('error', {err})
+            else{
+                res.redirect('/')
+            }
+        })
     }
 }
 

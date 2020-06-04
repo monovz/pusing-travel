@@ -1,4 +1,4 @@
-<%- include('./partials/header.ejs') %>
+<%- include('./partials/header.ejs', {afterLogin: null}) %>
     <h1>Login</h1>
     <form action="/login" method="POST">
         <input type="text" name="username">
@@ -6,5 +6,5 @@
         <input type="submit" value="login">
         
     </form>
-    <a href="/register">Belum punya akun ? klick di sini</a>
+    <a href="/register">Belum punya akun ? klik di sini</a>
 <%- include('./partials/footer.ejs') %>

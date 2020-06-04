@@ -9,7 +9,9 @@ function checkSession(req,res,next){
     }
 }
 
+// routes.use('/transactions', userTransaction);
+
 routes.use(checkSession)
-routes.get('/dashboard',user.dashboard)
+routes.get('/dashboard', user.dashboard)
 
 module.exports = routes

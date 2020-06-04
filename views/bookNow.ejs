@@ -1,0 +1,17 @@
+<%- include('./partials/header.ejs', {afterLogin: null}) %>
+<h1>Book Now</h1>
+<form action= "trips/<%= dataTrip.id %>/book" method="POST">
+    <label>Name:</label> <br>
+    <input type="text" value="<%= data.getFullName() %>" disabled> <br><br>
+    <label>Trip:</label><br>
+    <input type="text" value="<%= data.Trip.name %>" disabled>
+    <label>Date: </label><br>
+    <div>
+        <input type="date" name="start_date"> 
+        <input type="date" name="end_date">
+    </div><br><br>
+    <label>Persons:</label><br>
+    <input type="number" name="person_quantity"><br><br>
+    <input type="submit" value="Book Now!">
+</form>
+<%- include('./partials/footer.ejs') %>

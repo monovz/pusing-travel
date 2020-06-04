@@ -1,3 +1,5 @@
 <%- include('./partials/header.ejs', {afterLogin: null}) %>
-<h1>Home</h1>
+if(err){ %>
+    <p><%= err %></p>
+<% } %>
 <%- include('./partials/footer.ejs') %>

@@ -1,0 +1,38 @@
+<%- include('./partials/header.ejs', {afterLogin: true}) %>
+<a href="/logout">Logout</a>
+<div>
+    <h1>All Trips</h1>
+    <table class="table table-hover">
+        <thead class="thead-light" style="text-align: center;">
+            <tr>
+                <th>Name</th>
+                <th>Price</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% if(data.length > 0){ %>
+                <% data.forEach((elem)=>{ %>
+                    <tr>
+                        <td><%= data.name %></td>
+                        <td><%= data.price %></td>
+                        <td style="text-align: center;"> 
+                            <a class="btn btn-outline-info" style="margin-right: 10px;" href="/trips/<%= elem.id %>">
+                                See Details
+                            </a>
+                            <a class="btn btn-outline-info" style="margin-right: 10px;" href="/trips/<%= elem.id %>/book">
+                                Book Now!
+                            </a>
+                        </td>
+                    </tr>
+                <% }) %>
+            <% } else{ %>
+                <tr>
+                    <td colspan="5" style="text-align: center;"> No Transaction on this list.</td>
+                </tr> 
+            <% } %>
+            
+        </tbody>
+    </table>
+</div>
+<%- include('./partials/footer.ejs') %>
