@@ -1,8 +1,8 @@
-class HomeController{
+class UserController{
     static dashboard(req, res){
         res.render('dashboard')
     }
 
 }
 
-module.exports = HomeController;
+module.exports = UserController;

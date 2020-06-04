@@ -38,7 +38,13 @@ class HomeController{
             else{
                 if(bcrypt.compareSync(req.body.password, data.password)){
                     req.session.userId = req.body.username
-                    res.redirect(`/dashboard`)
+                    req.session.role = data.role
+                    if(data.role === "admin"){
+                        res.redirect(`/admin/dashboard`)
+                    }
+                    else {
+                        res.redirect('/dashboard')
+                    }
                 } else{
                     res.send(`username dan password tidak cocok`)
                 }
