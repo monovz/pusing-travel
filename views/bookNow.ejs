@@ -1,17 +1,18 @@
-<%- include('./partials/header.ejs', {afterLogin: null}) %>
+<%- include('./partials/header.ejs', {afterLogin: true}) %>
 <h1>Book Now</h1>
-<form action= "trips/<%= dataTrip.id %>/book" method="POST">
+<form action= "/trips/<%= dataTrip.id %>/book" method="POST">
     <label>Name:</label> <br>
-    <input type="text" value="<%= data.getFullName() %>" disabled> <br><br>
+    <input type="text" value="<%= dataUser.getFullName() %>" disabled> <br><br>
     <label>Trip:</label><br>
-    <input type="text" value="<%= data.Trip.name %>" disabled>
+    <input type="text" value="<%= dataTrip.name %>" disabled><br><br>
     <label>Date: </label><br>
     <div>
-        <input type="date" name="start_date"> 
-        <input type="date" name="end_date">
+        <input type="date" name="start_trip"> 
+        <input type="date" name="end_trip">
     </div><br><br>
     <label>Persons:</label><br>
     <input type="number" name="person_quantity"><br><br>
-    <input type="submit" value="Book Now!">
+    <input type="submit" value="Pesan Sekarang!">
+    <input type="button" value="Batalkan" onclick="window.location.href='/trips/<%= dataTrip.id %>/book/delete'">
 </form>
 <%- include('./partials/footer.ejs') %>

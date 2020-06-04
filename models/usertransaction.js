@@ -3,7 +3,9 @@ module.exports = (sequelize, DataTypes) => {
   const Sequelize = sequelize.Sequelize;
   const Model = Sequelize.Model;
 
-  class UserTransaction extends Model{}
+  class UserTransaction extends Model{
+  
+  }
 
   UserTransaction.init({
     UserId: DataTypes.INTEGER,
@@ -13,8 +15,20 @@ module.exports = (sequelize, DataTypes) => {
     end_trip: DataTypes.DATE,
     total_price: DataTypes.INTEGER,
     person_quantity: DataTypes.INTEGER,
-    transaction_time: DataTypes.DATE
-  }, { sequelize });
+    transaction_time: DataTypes.DATE,
+    status: DataTypes.STRING
+  }, { 
+    sequelize,
+      hooks:{
+        beforeCreate: (instance, options)=>{
+          instance.status = "waiting"
+        },
+  
+        beforeUpdate: (instance, options)=>{
+          instance.status = "booked"
+        }
+      }
+   });
   UserTransaction.associate = function(models) {
     UserTransaction.belongsTo(models.User, {foreignKey: "UserId", targetKey: "id"})
     UserTransaction.belongsTo(models.Trip, {foreignKey: "ProductId", targetKey: "id"})

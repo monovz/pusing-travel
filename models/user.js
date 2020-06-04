@@ -5,7 +5,11 @@ module.exports = (sequelize, DataTypes) => {
   const Sequelize = sequelize.Sequelize
   const Model = Sequelize.Model;
   
-  class User extends Model{}
+  class User extends Model{
+    getFullName(){
+      return `${this.first_name} ${this.last_name}`
+    }
+  }
 
   User.init({
     username: {
@@ -30,6 +34,10 @@ module.exports = (sequelize, DataTypes) => {
     const hash = bcrypt.hashSync(user.password, salt);
     user.password = hash
     user.role = "user"
+    if(!user.last_name){
+        user.last_name = user.first_name
+    }
+    
   })
   User.associate = function(models) {
     User.belongsToMany(models.Trip, {through: "UserTransactions"})

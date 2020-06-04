@@ -1,5 +1,6 @@
 <%- include('./partials/header.ejs', {afterLogin: true}) %>
-<a href="/logout">Logout</a>
+<a href="/logout">Logout</a><br><br>
+<a href="/<%= username %>/dashboard">Back to Dashboard</a>
 <div>
     <h1>All Trips</h1>
     <table class="table table-hover">
@@ -14,8 +15,8 @@
             <% if(data.length > 0){ %>
                 <% data.forEach((elem)=>{ %>
                     <tr>
-                        <td><%= data.name %></td>
-                        <td><%= data.price %></td>
+                        <td><%= elem.name %></td>
+                        <td><%= helper(elem.price) %></td>
                         <td style="text-align: center;"> 
                             <a class="btn btn-outline-info" style="margin-right: 10px;" href="/trips/<%= elem.id %>">
                                 See Details

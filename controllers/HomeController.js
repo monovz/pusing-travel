@@ -14,6 +14,8 @@ class HomeController{
         let newUser = {
                 username: req.body.username,
                 password: req.body.password,
+                first_name: req.body.first_name,
+                last_name: req.body.last_name
             }
         User.create(newUser)
         .then(data =>{
@@ -37,7 +39,13 @@ class HomeController{
             else{
                 if(bcrypt.compareSync(req.body.password, data.password)){
                     req.session.userId = req.body.username
-                    res.redirect(`/${req.body.username}/dashboard`)
+                    req.session.role = data.role
+                    if(data.role === "admin"){
+                        res.redirect(`/admin/dashboard`)
+                    }
+                    else {
+                        res.redirect(`/${req.body.username}/dashboard`)
+                    }
                 } else{
                     res.send(`username dan password tidak cocok`)
                 }

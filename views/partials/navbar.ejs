@@ -1,28 +1,27 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top pl-md-5 pr-md-5">
-    <a class="navbar-brand" href="/">Pusing Travel</a>
+    <a class="navbar-brand" href="<%= afterLogin ? '#' : '/' %>">Pusing Travel</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
   
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto">
-        <li class="nav-item active">
-          <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/trips">Trips</a>
-        </li>
-      </ul>
-      <form class="form-inline my-2 my-lg-0" method="POST">
-        <input class="form-control mr-sm-2" type="search" placeholder="Search Trip" aria-label="Search">
-        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-      </form>
-      <% if(!afterLogin){ %>
-        <ul class="navbar-nav ml-md-4">
+        <% if(!afterLogin){ %>
+          <li class="nav-item active">
+            <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+          </li>
           <li class="nav-item">
               <a class="nav-link" href="/login">Login</a>
           </li>
+        <% } else{ %>
+          <li class="nav-item">
+            <a class="nav-link" href="/trips">Trips</a>
+          </li>
         </ul>
-      <% } %>
+        <form action="/trips" class="form-inline my-2 my-lg-0" method="PGET">
+          <input name="search" class="form-control mr-sm-2" type="search" placeholder="Search Trip" aria-label="Search">
+          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </form>
+        <% } %>
     </div>
   </nav>
